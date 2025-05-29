@@ -1,0 +1,28 @@
+{
+  "name": "complaint-management-agent",
+  "version": "1.0.0",
+  "description": "A full-stack complaint management system with React frontend and Node.js backend",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/novaticstar/complaint-management-agent.git"
+  },
+  "keywords": [
+    "complaint",
+    "management",
+    "react",
+    "nodejs",
+    "supabase"
+  ],
+  "author": "Matthew Martin",
+  "license": "MIT"
+}
