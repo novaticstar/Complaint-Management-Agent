@@ -1120,8 +1120,8 @@ p, .text-base {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
-  max-width: 100%;
-  overflow-x: hidden;
+  width: 100%;
+  /* Remove overflow-x: hidden to prevent text cutting */
 }
 
 .complaint-text p {
@@ -1130,8 +1130,10 @@ p, .text-base {
   overflow-wrap: break-word;
   white-space: pre-wrap;
   hyphens: auto;
-  max-width: 100%;
+  width: 100%;
   line-height: var(--line-height-relaxed);
+  /* Ensure long words break properly */
+  word-break: break-word;
 }
 
 /* Complaint detail page styles */
@@ -1161,19 +1163,19 @@ p, .text-base {
 .complaint-detail-container {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  /* Remove overflow-x: hidden to prevent content cutting */
 }
 
 .complaint-detail-container .card {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  /* Remove overflow-x: hidden to prevent content cutting */
 }
 
 .complaint-detail-container .card-content {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  /* Remove overflow-x: hidden to prevent content cutting */
 }
 
 /* Ensure all text content respects container boundaries */
@@ -1182,14 +1184,48 @@ p, .text-base {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
-  max-width: 100%;
-  overflow-x: hidden;
+  width: 100%;
+  /* Proper word breaking for long words */
+  word-break: break-word;
 }
 
 /* Form groups in complaint detail */
 .complaint-detail-container .form-group p {
   white-space: normal;
   word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Additional responsive text handling */
+.complaint-detail-container .complaint-text,
+.complaint-detail-container .form-group {
+  min-width: 0; /* Allows flex items to shrink below their content size */
+}
+
+/* Ensure grid items can wrap text properly */
+.complaint-detail-container .grid {
+  min-width: 0;
+}
+
+.complaint-detail-container .grid > * {
+  min-width: 0;
+}
+
+/* Make sure the main container doesn't constrain text */
+.complaint-detail-container {
+  box-sizing: border-box;
+}
+
+/* Responsive text for mobile */
+@media (max-width: 768px) {
+  .complaint-detail-container .complaint-text {
+    padding: var(--space-3);
+  }
+  
+  .complaint-detail-container .complaint-text p {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+  }
 }
 
 /* Utility classes */

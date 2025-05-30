@@ -137,7 +137,7 @@ const ComplaintDetail = () => {
                 {complaint.status === 'Pending' && (
                   <button 
                     onClick={handleResolve}
-                    className="btn btn-success" 
+                    className="btn btn-success btn-sm" 
                     title="Mark as resolved"
                   >
                     <CheckIcon className="icon icon-16" />
@@ -146,7 +146,7 @@ const ComplaintDetail = () => {
                 )}
                 <button 
                   onClick={handleDelete}
-                  className="btn btn-error"
+                  className="btn btn-error btn-sm"
                   title="Delete complaint"
                 >
                   <TrashIcon className="icon icon-16" />
