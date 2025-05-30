@@ -1,26 +1,30 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { fetchComplaints, deleteComplaint, updateComplaintStatus } from '../utils/api';
 import type { Complaint } from '../types';
 import { 
-  HomeIcon, 
   UserIcon, 
-  LogoutIcon, 
   CheckIcon, 
   TrashIcon,
   AlertTriangleIcon,
-  LoaderIcon
+  LoaderIcon,
+  EyeIcon
 } from './Icons';
 
 const AdminDashboard = () => {
-  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  
-  const handleLogout = () => {
-    logout();
+  const [error, setError] = useState<string | null>(null);  
+  // Function to truncate text with ellipsis
+  const truncateText = (text: string, maxLength: number = 50) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  };
+
+  // Handle viewing complaint - navigate to detail page
+  const handleViewComplaint = (id: string) => {
+    navigate(`/admin/complaint/${id}`);
   };
   
   // Fetch complaints from the database
@@ -120,8 +124,7 @@ const AdminDashboard = () => {
             ) : (
               <div className="table-responsive">
                 <table className="table">
-                  <thead>
-                    <tr>
+                  <thead>                    <tr>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Complaint</th>
@@ -131,11 +134,22 @@ const AdminDashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {complaints.map((complaint) => (
-                      <tr key={complaint.id}>
-                        <td>{complaint.name}</td>
-                        <td>{complaint.email}</td>
-                        <td className="max-width-300 truncate">{complaint.complaint}</td>
+                    {complaints.map((complaint) => (                      <tr key={complaint.id}>
+                        <td className="max-width-150">
+                          <span title={complaint.name}>
+                            {truncateText(complaint.name, 20)}
+                          </span>
+                        </td>
+                        <td className="max-width-200">
+                          <span title={complaint.email}>
+                            {truncateText(complaint.email, 25)}
+                          </span>
+                        </td>
+                        <td className="max-width-300">
+                          <span title={complaint.complaint}>
+                            {truncateText(complaint.complaint, 50)}
+                          </span>
+                        </td>
                         <td>
                           <span className={`status-badge ${
                             complaint.status === 'Pending' ? 'status-pending' : 'status-resolved'
@@ -145,7 +159,15 @@ const AdminDashboard = () => {
                         </td>
                         <td>{new Date(complaint.created_at).toLocaleDateString()}</td>
                         <td>
-                          <div className="flex gap-2"> {/* This provides spacing between buttons */}
+                          <div className="flex gap-2">
+                            <button 
+                              onClick={() => handleViewComplaint(complaint.id)}
+                              className="btn btn-outline btn-sm" 
+                              title="View full complaint"
+                            >
+                              <EyeIcon className="icon icon-16" />
+                              View
+                            </button>
                             {complaint.status === 'Pending' && (
                               <button 
                                 onClick={() => handleResolve(complaint.id)}
@@ -170,8 +192,7 @@ const AdminDashboard = () => {
                     ))}
                   </tbody>
                 </table>
-              </div>
-            )}
+              </div>            )}
           </div>
         </div>
       </div>

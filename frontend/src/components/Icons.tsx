@@ -339,6 +339,46 @@ export const StarIcon: React.FC<IconProps> = ({ size = 24, className = '', 'aria
   </svg>
 );
 
+// Eye Icon (View)
+export const EyeIcon: React.FC<IconProps> = ({ size = 24, className = '', 'aria-label': ariaLabel }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-label={ariaLabel || 'View'}
+    role="img"
+  >
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+// Arrow Left Icon (Back)
+export const ArrowLeftIcon: React.FC<IconProps> = ({ size = 24, className = '', 'aria-label': ariaLabel }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-label={ariaLabel || 'Back'}
+    role="img"
+  >
+    <line x1="19" y1="12" x2="5" y2="12" />
+    <polyline points="12,19 5,12 12,5" />
+  </svg>
+);
+
 // Icon mapping for easy usage
 export const icons = {
   home: HomeIcon,
@@ -357,6 +397,8 @@ export const icons = {
   filter: FilterIcon,
   menu: MenuIcon,
   star: StarIcon,
+  eye: EyeIcon,
+  'arrow-left': ArrowLeftIcon,
 } as const;
 
 export type IconName = keyof typeof icons;
