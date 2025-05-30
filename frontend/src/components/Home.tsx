@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { PlusIcon, UserIcon, LoginIcon } from './Icons';
+import { PlusIcon } from './Icons';
 
 const Home = () => {
-  const { isAuthenticated, isAdmin } = useAuth();
-
   return (
     <div className="container">
       <div className="main-content">
@@ -26,27 +23,6 @@ const Home = () => {
                 <PlusIcon size={16} />
                 Submit a Complaint
               </Link>
-            </div>
-
-            <div className="card">
-              <h3>Admin Access</h3>
-              <p className="mb-6">
-                {isAuthenticated && isAdmin 
-                  ? "Access the administrative dashboard to manage complaints and track system activity."
-                  : "Administrative access for complaint management and system oversight."
-                }
-              </p>
-              {isAuthenticated && isAdmin ? (
-                <Link to="/admin" className="btn btn-secondary btn-lg">
-                  <UserIcon size={16} />
-                  View Admin Dashboard
-                </Link>
-              ) : (
-                <Link to="/login" className="btn btn-outline btn-lg">
-                  <LoginIcon size={16} />
-                  Admin Login
-                </Link>
-              )}
             </div>
           </div>
         </div>
