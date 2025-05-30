@@ -144,7 +144,7 @@ body {
   flex-direction: column;
 }
 
-/* Main Content Area - Centered */
+/* Main Content Area */
 .main-content {
   flex: 1;
   padding: var(--space-8) 0;
@@ -153,6 +153,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: none; /* Remove any max-width restrictions */
 }
 
 .main-content > * {
@@ -245,6 +246,82 @@ p, .text-base {
   line-height: var(--line-height-normal);
 }
 
+/* Add these styles to your existing CSS */
+
+/* Text alignment utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Typography utilities */
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Color utilities */
+.text-neutral-600 {
+  color: var(--color-neutral-600);
+}
+
+/* Width utilities */
+.w-full {
+  width: 100%;
+}
+
+/* Spacing utilities */
+.gap-6 {
+  gap: var(--space-6);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+
+.mb-6 {
+  margin-bottom: var(--space-6);
+}
+
+/* Enhanced card styling for better visual hierarchy */
+.card-elevated {
+  box-shadow: var(--shadow-lg);
+  border: none;
+}
+
+.card-header {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  margin-bottom: var(--space-4);
+  line-height: 1.2;
+}
+
+.card-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-neutral-600);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 /* Component Library */
 
 /* Buttons */
@@ -287,8 +364,13 @@ p, .text-base {
 
 .btn-lg {
   padding: var(--space-4) var(--space-6);
-  font-size: var(--font-size-lg);
-  min-height: 52px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
 }
 
 /* Button Variants */
@@ -307,12 +389,13 @@ p, .text-base {
 
 .btn-secondary {
   background-color: var(--color-neutral-100);
-  color: var(--color-neutral-700);
-  border-color: var(--color-neutral-200);
+  color: var(--color-neutral-900);
+  border: 1px solid var(--color-neutral-300);
 }
 
-.btn-secondary:hover:not(:disabled) {
+.btn-secondary:hover {
   background-color: var(--color-neutral-200);
+  border-color: var(--color-neutral-400);
 }
 
 .btn-success {
@@ -413,29 +496,35 @@ p, .text-base {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-base);
   padding: var(--space-6);
-  margin-bottom: var(--space-6);
+  margin: 0 auto var(--space-6) auto; /* Center the card */
+  max-width: 100%;
 }
 
 .card-elevated {
   box-shadow: var(--shadow-lg);
+  border: none;
 }
 
 .card-header {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--color-neutral-200);
-  padding-bottom: var(--space-4);
-  margin-bottom: var(--space-6);
 }
 
 .card-title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--color-neutral-900);
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--space-4);
+  line-height: 1.2;
 }
 
 .card-subtitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-neutral-500);
+  font-size: 1.125rem;
+  color: var(--color-neutral-600);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Tables */
@@ -514,14 +603,18 @@ p, .text-base {
   z-index: 100;
 }
 
+.header .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* This ensures logo left, nav right */
   padding: var(--space-4) 0;
   gap: var(--space-6);
-  max-width: 1280px;
-  margin: 0 auto;
   width: 100%;
 }
 
@@ -534,6 +627,7 @@ p, .text-base {
   color: inherit;
   transition: opacity 0.2s ease-in-out;
   flex-shrink: 0;
+  margin-right: auto; /* Push everything else to the right */
 }
 
 .header-logo:hover {
@@ -558,7 +652,7 @@ p, .text-base {
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  margin-left: auto;
+  margin-left: auto; /* Ensure it stays on the right */
 }
 
 .nav-links {
@@ -647,11 +741,10 @@ p, .text-base {
 /* Grid System */
 .grid {
   display: grid;
-  gap: var(--space-6);
 }
 
 .grid-cols-1 {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .grid-cols-2 {

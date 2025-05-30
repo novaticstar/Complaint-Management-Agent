@@ -33,24 +33,21 @@ const Header = () => {
               {isAuthenticated && isAdmin && (
                 <Link to="/admin" className="nav-link">
                   <UserIcon size={16} />
-                  <span>Admin Dashboard</span>
+                  <span>Admin</span>
                 </Link>
               )}
             </div>
 
-            {/* Auth Section */}
             <div className="auth-section">
               {!isAuthenticated ? (
                 <Link to="/login" className="nav-link auth-link">
                   <LoginIcon size={16} />
-                  <span>Admin Login</span>
+                  <span>Login</span>
                 </Link>
               ) : (
                 <div className="user-menu">
-                  <span className="welcome-text">
-                    Welcome, <strong>{user?.username}</strong>!
-                  </span>
-                  <button onClick={handleLogout} className="btn btn-sm btn-outline">
+                  <span className="welcome-text">Welcome, {user?.username}!</span>
+                  <button onClick={handleLogout} className="nav-link auth-link">
                     <LogoutIcon size={16} />
                     <span>Logout</span>
                   </button>
