@@ -94,25 +94,9 @@ const AdminDashboard = () => {
                     <UserIcon className="icon icon-24" />
                     <h1 className="heading-2 margin-0">Admin Dashboard</h1>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm text-neutral-600">Welcome, {user?.username}!</span>
-                    <button onClick={handleLogout} className="btn btn-outline btn-sm">
-                      <LogoutIcon className="icon icon-16" />
-                      Logout
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="grid margin-bottom-6">
-          <div className="grid-item grid-item-12">
-            <Link to="/" className="btn btn-outline">
-              <HomeIcon className="icon icon-16" />
-              Back to Home
-            </Link>
           </div>
         </div>
         
