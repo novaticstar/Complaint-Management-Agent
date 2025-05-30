@@ -5,7 +5,6 @@ import ComplaintForm from './components/ComplaintForm';
 import AdminDashboard from './components/AdminDashboard';
 import Login from './components/Login';
 import Header from './components/Header';
-import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -15,7 +14,6 @@ const App = () => {
       <Router>
         <div className="app">
           <Header />
-          <Navigation />
           <main className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
