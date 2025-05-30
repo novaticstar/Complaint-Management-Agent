@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="container">
         <p className="text-sm">
-          &copy; {currentYear} Nova Complaint Management. Built with accessibility and user experience in mind.
+          &copy; {currentYear} nova's Complaint Management. Built with accessibility and user experience in mind.
         </p>
       </div>
     </footer>
