@@ -382,8 +382,16 @@ p, .text-base {
 
 /* Enhanced table styling */
 .table-responsive {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+    width: 100%;
+  /* Remove automatic overflow-x: auto to prevent unnecessary horizontal scrolling */
+}
+
+/* Only add horizontal scroll on very small screens as last resort */
+@media (max-width: 480px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Enhanced card styling for better visual hierarchy */
