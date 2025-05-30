@@ -1,7 +1,9 @@
 const Header = () => {
   return (
-    <header>
-      <h1>Nova Complaint Management</h1>
+    <header className="header">
+      <div className="container">
+        <h1>Nova Complaint Management</h1>
+      </div>
     </header>
   );
 };

@@ -94,15 +94,15 @@ npm run install:all
 #### Frontend Environment
 Create `frontend/.env`:
 ```
-VITE_SUPABASE_URL=https://ghcqimqkyqbwwjedsesj.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoY3FpbXFreXFid3dqZWRzZXNqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg1NTAxOTEsImV4cCI6MjA2NDEyNjE5MX0.TmoEisPj6e2Bnbs6SyF0QGywiXPGdc2yeVgp88kkCho
+VITE_SUPABASE_URL=your link here
+VITE_SUPABASE_ANON_KEY=your key here
 VITE_API_BASE_URL=http://localhost:3001
 ```
 
 #### Backend Environment
 Create `backend/.env`:
 ```
-SUPABASE_URL=https://ghcqimqkyqbwwjedsesj.supabase.co
+SUPABASE_URL=your link here
 SUPABASE_SERVICE_KEY=your_service_key_here
 PORT=3001
 ```

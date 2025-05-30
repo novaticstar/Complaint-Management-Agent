@@ -3,6 +3,15 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { fetchComplaints, deleteComplaint, updateComplaintStatus } from '../utils/api';
 import type { Complaint } from '../types';
+import { 
+  HomeIcon, 
+  UserIcon, 
+  LogoutIcon, 
+  CheckIcon, 
+  TrashIcon,
+  AlertTriangleIcon,
+  LoaderIcon
+} from './Icons';
 
 const AdminDashboard = () => {
   const { user, logout } = useAuth();
@@ -59,83 +68,128 @@ const AdminDashboard = () => {
       }
     }
   };
-
   if (loading) {
     return (
-      <div>
-        <h1>Admin Dashboard</h1>
-        <p>Loading complaints...</p>
+      <div className="main-content">
+        <div className="container">
+          <div className="flex items-center justify-center padding-8">
+            <div className="flex items-center gap-2">
+              <LoaderIcon className="icon icon-24 animate-spin" />
+              <span className="text-lg">Loading complaints...</span>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
-
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
-      <div>
-        <p>Welcome, {user?.username}! | <button onClick={handleLogout}>Logout</button></p>
-      </div>
-      <Link to="/">
-        <button>Back to Home</button>
-      </Link>
-      
-      {error && (
-        <div style={{ color: 'red', margin: '10px 0' }}>
-          <p>{error}</p>
-        </div>
-      )}
-      
-      <div>
-        <p>Found {complaints.length} complaint(s):</p>
-        {complaints.length === 0 ? (
-          <p>No complaints found.</p>
-        ) : (
-          <table style={{ border: '1px solid black', borderCollapse: 'collapse', width: '100%' }}>
-            <thead>
-              <tr>
-                <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f0f0f0' }}>Name</th>
-                <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f0f0f0' }}>Email</th>
-                <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f0f0f0' }}>Complaint</th>
-                <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f0f0f0' }}>Status</th>
-                <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f0f0f0' }}>Date</th>
-                <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f0f0f0' }}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {complaints.map((complaint) => (
-                <tr key={complaint.id}>
-                  <td style={{ border: '1px solid black', padding: '8px' }}>{complaint.name}</td>
-                  <td style={{ border: '1px solid black', padding: '8px' }}>{complaint.email}</td>
-                  <td style={{ border: '1px solid black', padding: '8px' }}>{complaint.complaint}</td>
-                  <td style={{ border: '1px solid black', padding: '8px' }}>
-                    <span style={{ 
-                      color: complaint.status === 'Pending' ? 'orange' : 'green',
-                      fontWeight: 'bold'
-                    }}>
-                      {complaint.status}
-                    </span>
-                  </td>
-                  <td style={{ border: '1px solid black', padding: '8px' }}>
-                    {new Date(complaint.created_at).toLocaleDateString()}
-                  </td>
-                  <td style={{ border: '1px solid black', padding: '8px' }}>
-                    {complaint.status === 'Pending' && (
-                      <button 
-                        onClick={() => handleResolve(complaint.id)}
-                        style={{ marginRight: '5px' }}
-                      >
-                        Resolve
-                      </button>
-                    )}
-                    <button onClick={() => handleDelete(complaint.id)}>
-                      Delete
+    <div className="main-content">
+      <div className="container">
+        <div className="grid margin-bottom-6">
+          <div className="grid-item grid-item-12">
+            <div className="card">
+              <div className="card-header">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <UserIcon className="icon icon-24" />
+                    <h1 className="heading-2 margin-0">Admin Dashboard</h1>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-neutral-600">Welcome, {user?.username}!</span>
+                    <button onClick={handleLogout} className="btn btn-outline btn-sm">
+                      <LogoutIcon className="icon icon-16" />
+                      Logout
                     </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid margin-bottom-6">
+          <div className="grid-item grid-item-12">
+            <Link to="/" className="btn btn-outline">
+              <HomeIcon className="icon icon-16" />
+              Back to Home
+            </Link>
+          </div>
+        </div>
+        
+        {error && (
+          <div className="alert alert-error margin-bottom-6">
+            <AlertTriangleIcon className="icon icon-16" />
+            {error}
+          </div>
         )}
+        
+        <div className="card">
+          <div className="card-header">
+            <h2 className="heading-3 margin-0">Complaints ({complaints.length})</h2>
+          </div>
+          
+          <div className="card-content">
+            {complaints.length === 0 ? (
+              <div className="text-center padding-8">
+                <p className="text-lg text-neutral-600">No complaints found.</p>
+              </div>
+            ) : (
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Complaint</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {complaints.map((complaint) => (
+                      <tr key={complaint.id}>
+                        <td>{complaint.name}</td>
+                        <td>{complaint.email}</td>
+                        <td className="max-width-300 truncate">{complaint.complaint}</td>
+                        <td>
+                          <span className={`status-badge ${
+                            complaint.status === 'Pending' ? 'status-pending' : 'status-resolved'
+                          }`}>
+                            {complaint.status}
+                          </span>
+                        </td>
+                        <td>{new Date(complaint.created_at).toLocaleDateString()}</td>
+                        <td>
+                          <div className="flex gap-2">
+                            {complaint.status === 'Pending' && (
+                              <button 
+                                onClick={() => handleResolve(complaint.id)}
+                                className="btn btn-success btn-sm"
+                                title="Mark as resolved"
+                              >
+                                <CheckIcon className="icon icon-16" />
+                                Resolve
+                              </button>
+                            )}
+                            <button 
+                              onClick={() => handleDelete(complaint.id)}
+                              className="btn btn-error btn-sm"
+                              title="Delete complaint"
+                            >
+                              <TrashIcon className="icon icon-16" />
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
