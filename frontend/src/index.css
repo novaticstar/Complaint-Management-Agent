@@ -144,19 +144,37 @@ body {
   flex-direction: column;
 }
 
-/* Main Content Area */
+/* Main Content Area - Centered */
 .main-content {
   flex: 1;
   padding: var(--space-8) 0;
   min-height: calc(100vh - 120px); /* Account for header and footer */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-/* Footer */
+.main-content > * {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* Footer - Centered */
 .footer {
   background-color: var(--color-neutral-800);
   color: var(--color-neutral-200);
   padding: var(--space-6) 0;
   margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer .container {
+  text-align: center;
 }
 
 .footer p {
@@ -502,9 +520,12 @@ p, .text-base {
   justify-content: space-between;
   padding: var(--space-4) 0;
   gap: var(--space-6);
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-/* Logo Section */
+/* Logo Section - Aligned to Left */
 .header-logo {
   display: flex;
   align-items: center;
@@ -512,6 +533,7 @@ p, .text-base {
   text-decoration: none;
   color: inherit;
   transition: opacity 0.2s ease-in-out;
+  flex-shrink: 0;
 }
 
 .header-logo:hover {
@@ -531,13 +553,12 @@ p, .text-base {
   line-height: 1;
 }
 
-/* Header Navigation */
+/* Header Navigation - Aligned to Right */
 .header-nav {
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  flex: 1;
-  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .nav-links {
@@ -726,6 +747,69 @@ p, .text-base {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    align-items: center;
+  }
+  
+  .header-logo {
+    justify-content: center;
+  }
+  
+  .header-nav {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-left: 0;
+  }
+  
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  
+  .auth-section {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .user-menu {
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+  
+  .company-name {
+    font-size: var(--font-size-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link span {
+    display: none;
+  }
+  
+  .nav-link {
+    padding: var(--space-2);
+    min-width: 40px;
+    justify-content: center;
+  }
+  
+  .welcome-text {
+    display: none;
+  }
+  
+  .main-content > * {
+    padding: 0 var(--space-3);
+  }
 }
 
 /* Reduced Motion Accessibility */
