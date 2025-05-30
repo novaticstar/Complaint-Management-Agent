@@ -145,11 +145,11 @@ const AdminDashboard = () => {
                         </td>
                         <td>{new Date(complaint.created_at).toLocaleDateString()}</td>
                         <td>
-                          <div className="flex gap-2">
+                          <div className="flex gap-2"> {/* This provides spacing between buttons */}
                             {complaint.status === 'Pending' && (
                               <button 
                                 onClick={() => handleResolve(complaint.id)}
-                                className="btn btn-success btn-sm"
+                                className="btn btn-success btn-sm" 
                                 title="Mark as resolved"
                               >
                                 <CheckIcon className="icon icon-16" />

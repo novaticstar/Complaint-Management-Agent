@@ -115,18 +115,12 @@ const ComplaintForm = () => {
                     <button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="btn btn-primary btn-block"
+                      className="btn btn-primary btn-md"
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit Complaint'}
                     </button>
                   </div>
                 </form>
-              </div>
-              
-              <div className="card-footer">                <Link to="/" className="btn btn-outline btn-block">
-                  <HomeIcon className="icon icon-16" />
-                  Back to Home
-                </Link>
               </div>
             </div>
           </div>
