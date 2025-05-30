@@ -237,7 +237,7 @@ complaint-management-agent/
 
 ## 🐛 Known Issues
 
-- Admin dashboard is not password-protected
+- Currently not fully utilizing tailwind (not fully familiarized with this)
 - No email verification for complaint submissions
 - Limited to basic CRUD operations
 
