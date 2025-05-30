@@ -31,7 +31,7 @@ export const fetchComplaints = async (): Promise<Complaint[]> => {
 };
 
 export const updateComplaintStatus = async (id: string, status: 'Pending' | 'Resolved'): Promise<Complaint> => {
-  const response = await fetch(`${API_BASE_URL}/complaints/${id}/status`, {
+  const response = await fetch(`${API_BASE_URL}/complaints/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
